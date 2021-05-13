@@ -1,0 +1,2 @@
+# Lego SSL Certificate Renewal
+@daily          /bin/client.sh
