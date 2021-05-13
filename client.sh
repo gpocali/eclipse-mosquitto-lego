@@ -39,12 +39,12 @@ else
 fi
 
 domain=$(nslookup $(ifconfig $(route | grep default | awk '{print $8}') | grep "inet addr" | awk '{print $2}' | cut -d: -f2) | grep name | awk '{print $4}')
-certServer=$(cat /data/certs/certServer | head -n 1)
-email=$(cat /data/certs/email | head -n 1)
+certServer=$(cat /mosquitto/config/lego/certServer | head -n 1)
+email=$(cat /mosquitto/config/lego/email | head -n 1)
 lego -s "$certServer" -a -m "$email" --path /mosquitto/config/.lego -d "$domain" --http.webroot "/tmp/lego" --http.port 1082 --http --tls --http-timeout 10 renew || \
 lego -s "$certServer" -a -m "$email" --path /mosquitto/config/.lego -d "$domain" --http.webroot "/tmp/lego" --http.port 1082 --http --tls --http-timeout 10 run
-cp -f /mosquitto/config/.lego/certificates/$domain.crt /data/certs/server.crt
-cp -f /mosquitto/config/.lego/certificates/$domain.key /data/certs/server.key
+cp -f /mosquitto/config/.lego/certificates/$domain.crt /mosquitto/config/certs/server.crt
+cp -f /mosquitto/config/.lego/certificates/$domain.key /mosquitto/config/certs/server.key
 
 if [[ $1 == "firstStart" ]]; then
     echo -n $(date) - First Start...
