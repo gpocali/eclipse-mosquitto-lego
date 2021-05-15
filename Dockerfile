@@ -10,9 +10,6 @@ RUN chmod 775 /bin/client.sh
 COPY ./lego /etc/crontabs/lego
 RUN chmod 600 /etc/crontabs/lego
 
-# EXPOSE PORT FOR LEGO CHALLENGE
-EXPOSE 1882
-
 # Expose the listening port of MQTT
 EXPOSE 1883
 EXPOSE 8883
