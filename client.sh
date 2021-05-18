@@ -62,9 +62,9 @@ lego -s "$certServer" -a -m "$email" --path /mosquitto/config/.lego -d "$domain"
 cp -f /mosquitto/config/.lego/certificates/$domain.crt /mosquitto/config/certs/server.crt
 cp -f /mosquitto/config/.lego/certificates/$domain.key /mosquitto/config/certs/server.key
 
-if [[ $1 == "firstStart" ]]; then
+if [[ "$1" == "firstStart" ]]; then
     echo -n $(date) - First Start...
-    crond -b -l 8 -c /etc/crontabs
+    crond -b
     /docker-entrypoint.sh /usr/sbin/mosquitto -c /mosquitto/config/mosquitto.conf
 fi
 
