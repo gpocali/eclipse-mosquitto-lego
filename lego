@@ -1,2 +1,2 @@
 # Lego SSL Certificate Renewal
-@hourly          /bin/client.sh
+59 * * * * /bin/client.sh

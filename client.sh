@@ -64,7 +64,7 @@ cp -f /mosquitto/config/.lego/certificates/$domain.key /mosquitto/config/certs/s
 
 if [[ "$1" == "firstStart" ]]; then
     echo -n $(date) - First Start...
-    crond -b
+    crond -b -L /tmp/cron.log
     /docker-entrypoint.sh /usr/sbin/mosquitto -c /mosquitto/config/mosquitto.conf
 fi
 
